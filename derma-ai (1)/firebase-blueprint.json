@@ -1,0 +1,128 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information and settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "role": { "type": "string", "enum": ["patient", "doctor", "admin"] },
+        "phoneNumber": { "type": "string" },
+        "age": { "type": "number" },
+        "dob": { "type": "string" },
+        "gender": { "type": "string", "enum": ["male", "female", "other"] },
+        "bio": { "type": "string" },
+        "specialty": { "type": "string" },
+        "licenseNumber": { "type": "string" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Scan": {
+      "title": "Skin Scan Result",
+      "description": "Result of an AI skin analysis",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "prediction": { "type": "string" },
+        "confidence": { "type": "number" },
+        "severity": { "type": "string", "enum": ["mild", "moderate", "severe", "urgent"] },
+        "details": { "type": "object" },
+        "remedies": { "type": "array", "items": { "type": "string" } },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "symptoms": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["userId", "imageUrl", "prediction", "confidence", "severity"]
+    },
+    "Doctor": {
+      "title": "Doctor Listing",
+      "description": "Information about registered dermatologists",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "specialty": { "type": "string" },
+        "rating": { "type": "number" },
+        "fee": { "type": "number" },
+        "distance": { "type": "string" },
+        "availableSlots": { "type": "array", "items": { "type": "string" } },
+        "location": { "type": "object" },
+        "photoURL": { "type": "string" }
+      },
+      "required": ["name", "specialty"]
+    },
+    "Appointment": {
+      "title": "Doctor Appointment",
+      "description": "Record of a patient booking with a doctor",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "patientId": { "type": "string" },
+        "doctorId": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "cancelled", "completed"] },
+        "type": { "type": "string", "enum": ["video", "in-person"] },
+        "notes": { "type": "string" }
+      },
+      "required": ["patientId", "doctorId", "date", "status"]
+    },
+    "Reminder": {
+      "title": "Health Reminder",
+      "description": "Medicine or follow-up notifications",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "time": { "type": "string" },
+        "type": { "type": "string", "enum": ["medicine", "follow-up"] },
+        "active": { "type": "boolean" }
+      },
+      "required": ["userId", "title", "time"]
+    },
+    "Journal": {
+      "title": "Health Journal",
+      "description": "Daily notes and mood tracking",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "user_id": { "type": "string" },
+        "content": { "type": "string" },
+        "mood": { "type": "string", "enum": ["healthy", "urgent", "mild"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["user_id", "content"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Stored user profiles"
+    },
+    "/scans/{scanId}": {
+      "schema": "Scan",
+      "description": "History of user skin scans"
+    },
+    "/doctors/{doctorId}": {
+      "schema": "Doctor",
+      "description": "Public doctor listings"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": "Appointment",
+      "description": "User appointments"
+    },
+    "/reminders/{reminderId}": {
+      "schema": "Reminder",
+      "description": "User health reminders"
+    },
+    "/journals/{journalId}": {
+      "schema": "Journal",
+      "description": "User health journals"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Derma AI",
+  "description": "Professional AI-powered skin health analysis and specialist booking platform.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API",
+    "AI Vision Analysis",
+    "Telemedicine Booking",
+    "Health Records",
+    "Multilingual support"
+  ]
+}

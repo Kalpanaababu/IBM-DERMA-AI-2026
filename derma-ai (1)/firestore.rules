@@ -1,0 +1,105 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Global helpers
+    function isSignedIn() { return request.auth != null; }
+    function isOwner(userId) { return isSignedIn() && request.auth.uid == userId; }
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+    function isVerified() { return request.auth.token.email_verified == true; }
+
+    // User Profile Rules
+    match /users/{userId} {
+      function isValidUser(data) {
+        return data.keys().hasAll(['uid', 'email', 'role']) &&
+               data.uid == request.auth.uid &&
+               data.email is string &&
+               data.role in ['patient', 'doctor', 'admin'];
+      }
+
+      allow get: if isSignedIn();
+      allow list: if isSignedIn() && resource.data.uid == request.auth.uid;
+      allow create: if isOwner(userId) && isValidUser(request.resource.data);
+      allow update: if isOwner(userId) && 
+                      request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName', 'photoURL', 'phoneNumber', 'age', 'dob', 'gender', 'bio', 'specialty', 'licenseNumber']) &&
+                      isValidUser(request.resource.data);
+    }
+
+    // Scan Rules
+    match /scans/{scanId} {
+      function isValidScan(data) {
+        return data.keys().hasAll(['userId', 'imageUrl', 'prediction', 'confidence', 'severity']) &&
+               data.userId == request.auth.uid &&
+               data.imageUrl is string &&
+               data.confidence is number &&
+               data.severity in ['mild', 'moderate', 'severe', 'urgent'];
+      }
+
+      allow get: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn() && isVerified() && isValidScan(request.resource.data);
+      allow delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+    }
+
+    // Doctor Listings
+    match /doctors/{doctorId} {
+      function isValidDoctor(data) {
+        return data.keys().hasAll(['id', 'name', 'specialty', 'rating', 'fee', 'photoURL', 'availableSlots']) &&
+               data.id == doctorId;
+      }
+      allow read: if isSignedIn();
+      allow write: if isSignedIn(); // Allowing for initial seeding in this build
+    }
+
+    // Appointment Rules
+    match /appointments/{appointmentId} {
+      function isValidAppointment(data) {
+        return data.keys().hasAll(['patientId', 'doctorId', 'doctorName', 'date', 'time', 'type', 'status']) &&
+               data.patientId == request.auth.uid &&
+               data.status in ['pending', 'confirmed', 'cancelled', 'completed'] &&
+               data.type in ['video', 'in-person'];
+      }
+
+      allow get: if isSignedIn() && (resource.data.patientId == request.auth.uid || resource.data.doctorId == request.auth.uid);
+      allow list: if isSignedIn() && resource.data.patientId == request.auth.uid;
+      allow create: if isSignedIn() && isValidAppointment(request.resource.data);
+      allow update: if isSignedIn() && (
+        (resource.data.patientId == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'notes']) && request.resource.data.status == 'cancelled') ||
+        (resource.data.doctorId == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'notes']))
+      );
+    }
+
+    // Reminder Rules
+    match /reminders/{reminderId} {
+      function isValidReminder(data) {
+        return data.keys().hasAll(['userId', 'title', 'time', 'type', 'active']) &&
+               data.userId == request.auth.uid &&
+               data.title is string && data.title.size() <= 200 &&
+               data.type in ['medicine', 'follow-up'];
+      }
+      allow get: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn() && isValidReminder(request.resource.data);
+      allow update: if isSignedIn() && resource.data.userId == request.auth.uid && isValidReminder(request.resource.data);
+      allow delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+    }
+
+    // Journal Rules
+    match /journals/{journalId} {
+      function isValidJournal(data) {
+        return data.keys().hasAll(['user_id', 'content', 'mood', 'createdAt']) &&
+               data.user_id == request.auth.uid &&
+               data.content is string && data.content.size() <= 10000 &&
+               data.mood in ['healthy', 'urgent', 'mild'];
+      }
+
+      allow read: if isSignedIn() && resource.data.user_id == request.auth.uid;
+      allow create: if isSignedIn() && isVerified() && isValidJournal(request.resource.data);
+      allow delete: if isSignedIn() && resource.data.user_id == request.auth.uid;
+    }
+  }
+}
