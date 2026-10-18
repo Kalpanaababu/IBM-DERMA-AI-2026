@@ -1,125 +1,118 @@
-# PROJECT NAME: DERMAAI
+# IBM-DERMA-AI-2026
+
+# PROJECT NAME: DERMA AI
 
 ## Description of project:
 
-DermaAI is an AI-Powered Skin Health Monitoring and Dermatology Assistance Platform designed to make preliminary skin-health assessment more accessible. The platform allows users to scan or upload skin images and receive AI-generated insights, possible severity indicators, symptoms to observe, and basic precautions. It also provides an English and Tamil patient gateway, an AI Advisor, specialist appointment assistance, UV and micro-climate alerts, and a skin health tracker that helps users monitor changes over 7–14 days. With separate patient and doctor views, DermaAI aims to connect preliminary skin-health awareness with accessible digital assistance.
+DermaAI is an AI-powered Skin Health Monitoring and Dermatology Assistance Platform designed to help people understand skin diseases and access relevant healthcare information. The platform allows users to scan or upload images of visible skin concerns and receive AI-generated preliminary insights about possible skin conditions.
+
+It provides information about common skin diseases, their symptoms, possible causes, and basic remedies or care recommendations. The scanner also displays estimated severity indicators classified as **Low, Medium, or High**, helping users understand the potential level of concern.
+
+DermaAI includes an AI Advisor for skin-health queries, English and Tamil language support, and a location-based hospital finder that helps users identify hospitals offering treatment for specific skin conditions. By combining disease awareness, image analysis, and healthcare discovery, DermaAI aims to make skin-health information easier to understand and access.
 
 ## Problem Statement:
 
-Skin-related concerns affect people across different age groups and occupations. However, identifying visible skin changes and accessing appropriate dermatological assistance can be challenging due to limited awareness, geographical barriers, consultation costs, and delays in seeking professional care. These difficulties can be especially relevant for workers exposed to environmental and occupational hazards, including firecracker workers who may experience skin irritation or exposure-related injuries.
+Skin diseases and related conditions affect people of different ages and backgrounds. However, many people lack sufficient knowledge about their symptoms, causes, risk factors, and available treatment options. Recognizing a possible skin condition can be difficult without proper guidance, and delays in seeking medical attention may allow certain conditions to worsen.
 
-Many people find it difficult to understand visible skin changes, recognize possible warning signs, or determine which precautions to follow. Language barriers can make health information harder to understand, particularly for users who prefer regional languages. In addition, digital solutions may provide image analysis or appointment booking separately rather than offering a connected platform for preliminary insights, tracking, guidance, and specialist access.
+Accessing reliable skin-health information can also be challenging due to language barriers, limited awareness, consultation costs, and difficulties finding hospitals that treat specific skin conditions. People may have to search across multiple sources to understand their symptoms, learn about possible causes, and identify suitable healthcare facilities.
 
-DermaAI addresses these challenges by combining AI-assisted skin image analysis, preliminary insights, basic precautions, regional-language support, skin health tracking, and specialist appointment assistance in one platform. The goal is to improve access to understandable skin-health information and encourage users to seek professional medical advice when required.
+There is a need for an accessible platform that brings skin disease information, preliminary image analysis, basic care guidance, and hospital discovery together. DermaAI addresses this need by helping users explore possible skin conditions, understand their symptoms and causes, view estimated severity indicators, and locate relevant medical services.
 
 ## Data set:
 
-DermaAI uses skin images submitted by users through its image scanning or upload interface. Skin-image datasets with suitable labels can support the development and evaluation of image-analysis systems. Image quality, lighting conditions, resolution, and differences in skin tones are important factors that can affect the analysis.
+DermaAI accepts skin images submitted by users through its scanning or upload interface. These images are processed by the platform's image-analysis component to generate preliminary insights about visible skin concerns.
 
-The images are processed by the platform's AI analysis component to generate preliminary insights about visible skin concerns. Dataset diversity and quality are important when evaluating the reliability of the results. The actual dataset sources and model details should be documented according to the implementation used in the project.
+Suitable labelled skin-image datasets can be used to develop and evaluate image-analysis systems. Factors such as image resolution, lighting, image quality, and variations in skin tones are important when assessing the reliability of the results.
+
+The quality and diversity of the dataset play an important role in evaluating the system's performance across different images and users. The actual dataset sources, model details, and evaluation results should be documented according to the implementation used in the project.
 
 ## Solution:
 
-We have developed DermaAI as a digital platform that combines preliminary skin-health assistance with accessible user interaction. Users can scan or upload a skin image to receive AI-generated insights, possible severity indicators, symptoms to observe, and basic precautions.
+DermaAI provides an integrated platform for skin disease awareness, AI-assisted image analysis, and healthcare discovery. It aims to help users understand possible skin concerns and find relevant medical assistance through the following features.
 
-The platform includes an AI Advisor for general skin-health questions and a patient gateway supporting English and Tamil. Its skin health tracker helps users monitor changes over a period of 7–14 days. Specialist appointment assistance helps users explore relevant dermatological services, while UV and micro-climate alerts provide additional environmental context. Separate patient and doctor views support the platform's different user needs.
+### 1. AI-Powered Skin Disease Scanner
 
-This approach brings several skin-health assistance features together in one place. By combining preliminary image analysis, understandable information, tracking, and specialist access, DermaAI aims to improve awareness and help users make informed decisions about seeking professional care. The platform supports preliminary awareness and does not replace diagnosis or treatment by a qualified dermatologist.
+Users can scan or upload images of visible skin concerns through the platform. The AI analysis component processes the submitted image and generates preliminary insights about possible skin conditions. This helps users understand what a visible skin concern might indicate and whether further medical evaluation may be necessary.
 
+### 2. Skin Disease Knowledge and Awareness
+
+The platform provides information about skin diseases, including their common symptoms, possible causes, and contributing factors. This information helps users improve their understanding of different skin conditions and recognize signs that may require professional attention.
+
+### 3. Symptoms, Causes, and Remedies
+
+Based on the available skin-health information and analysis results, DermaAI provides details about possible symptoms, potential causes, and basic care recommendations. These insights are intended to improve awareness and guide users towards appropriate next steps rather than encourage self-diagnosis.
+
+### 4. Severity Indicators
+
+The scanner presents estimated severity indicators using three levels:
+
+- **Low:** Indicates a lower estimated level of concern based on the available analysis.
+- **Medium:** Indicates that the skin concern may require closer attention or professional advice.
+- **High:** Indicates a potentially serious concern for which prompt medical evaluation may be appropriate.
+
+These indicators are preliminary guidance and must not be treated as a confirmed medical assessment.
+
+### 5. Location-Based Hospital Finder
+
+DermaAI helps users search for hospitals that provide treatment for specific skin conditions based on their location. This feature aims to reduce the difficulty of finding relevant healthcare facilities and helps users explore possible options for professional consultation and treatment.
+
+### 6. AI Advisor and Language Support
+
+The AI Advisor helps users explore general skin-health questions and understand information about skin conditions. English and Tamil language support makes the platform more accessible to users who prefer either language.
+
+### Conclusion
+
+DermaAI combines AI-assisted skin image analysis, skin disease education, severity indicators, basic care guidance, and location-based hospital discovery in one platform. By making skin-health information easier to understand and helping users explore relevant healthcare services, the project aims to improve awareness and support informed decisions about seeking medical care.
+
+**Note:** DermaAI provides preliminary AI-generated information and does not replace professional diagnosis, medical advice, or treatment by a qualified healthcare professional.
 ## Mind Map:
+<img width="1312" height="1199" alt="image" src="https://github.com/user-attachments/assets/8e9472de-351b-4091-8059-2f9c08d6d1bf" />
 
-The DermaAI mind map covers the platform's major modules and their relationships:
 
-- AI-Based Skin Image Analysis
-- English and Tamil Patient Gateway
-- AI Advisor
-- Skin Health Tracking
-- Specialist Appointment Assistance
-- UV and Micro-Climate Alerts
-- Patient View
-- Doctor View
-
-Mind map image: Add the actual DermaAI mind map here.
-
-## Leveraging AI technology for the solution:
-
-AI-assisted image analysis is used to generate preliminary insights from user-submitted skin images. The analysis workflow connects with the platform's frontend so that users can view the results in an understandable format. The AI Advisor provides an additional interface for general skin-health questions, while the tracking feature helps users observe changes over time.
-
-The platform also combines regional-language support, specialist appointment assistance, and environmental alerts to provide a more connected experience. These features are intended to improve accessibility to preliminary skin-health information and support informed decisions about professional consultation. AI-generated results must not be treated as confirmed medical diagnoses.
+## Leveraging AI Technology:
+DermaAI analyzes skin images using AI and provides preliminary insights. With IBM Z technology supporting secure and reliable data processing, the platform also offers an AI Advisor, language support, appointment assistance, and environmental alerts.
 
 ## Data Preprocessing & Feature Extraction:
-
-Skin images are submitted through the scan or upload interface for analysis.
-
-Image preparation and processing are performed according to the requirements of the image-analysis component.
-
-Image resolution, lighting conditions, image quality, and skin-tone diversity are important considerations when preparing and evaluating image data.
-
-Relevant visual information is processed by the analysis component to generate preliminary insights about visible skin concerns.
-
-Dataset quality and diversity should be considered when evaluating the system's reliability.
+- Users upload or scan skin images.
+- Image quality, lighting, and skin-tone differences are considered.
+- The system analyzes visible skin concerns.
 
 ## Descriptive & Exploratory Analysis:
-
-Exploratory analysis can help understand the quality and diversity of the available skin-image data.
-
-Image distributions can be examined to understand the representation of available labels and skin tones.
-
-Image quality, resolution, and lighting variations can be reviewed to identify potential limitations.
-
-Duplicate images, missing labels, and dataset imbalance can be examined during data preparation.
-
-Visualizations and evaluation results can help identify areas where the analysis component may need improvement.
+- Examine image quality and skin-tone diversity.
+- Check for duplicate images, missing labels, and data imbalance.
 
 ## Model Training & Evaluation:
-
-The image-analysis component should be evaluated using an appropriate labelled dataset and suitable evaluation measures.
-
-Metrics such as accuracy, precision, recall, and F1-score can be used where applicable to evaluate classification performance.
-
-Testing should consider differences in image quality, lighting conditions, and skin tones to identify limitations in the analysis.
-
-The model name, dataset source, and measured performance results should be included based on the actual implementation rather than assumed values.
+- Evaluate the model using accuracy, precision, recall, and F1-score where applicable.
+- Include the actual model, dataset, and performance results.
 
 ## Frontend Integration:
+- Users can upload skin images and view AI-generated insights.
+- Supports English and Tamil.
+- Includes an AI Advisor and a 7–14-day skin tracker.
+- Provides appointment assistance, environmental alerts, and separate patient and doctor views.
+- IBM Z can support the backend infrastructure for secure and reliable platform operations.
+## ARCHITECTURE DIAGRAM :
+<img width="1224" height="1285" alt="image" src="https://github.com/user-attachments/assets/dd5f347c-800b-4f4f-aba9-a388971e4c38" />
 
-The DermaAI frontend allows users to access the platform's skin-health assistance features through a user-friendly interface.
+## DATAFLOW DIAGRAM :
+<img width="671" height="558" alt="image" src="https://github.com/user-attachments/assets/b81f0860-6f5e-4b4d-9e82-fd3b3d7d7803" />
+## TECH STACK :
+<img width="1254" height="1254" alt="image" src="https://github.com/user-attachments/assets/a84b0269-64f4-4a3e-aff8-95a2a4a4a693" />
 
-Users can scan or upload a skin image and view preliminary AI-generated insights.
+## GLIMPSE OF THE PROJECT :
 
-The results interface presents possible severity indicators, symptoms to observe, and basic precautions.
+<img width="483" height="539" alt="image" src="https://github.com/user-attachments/assets/dc84a844-650d-4f8e-a907-28b924c14fcc" />
+<img width="458" height="539" alt="image" src="https://github.com/user-attachments/assets/5c7ac2ba-038c-4ad9-99e4-596a43da75f7" />
+<img width="421" height="539" alt="image" src="https://github.com/user-attachments/assets/17d46c6c-071d-4d65-8b51-0a071aac2741" />
+<img width="519" height="539" alt="image" src="https://github.com/user-attachments/assets/81259652-8832-4763-8fee-fc57c7246ccf" />
+<img width="444" height="539" alt="image" src="https://github.com/user-attachments/assets/16728234-1d83-4e7d-a600-8493487b51ce" />
+<img width="481" height="539" alt="image" src="https://github.com/user-attachments/assets/9a171bbb-8e32-4cab-9120-1f7668177955" />
 
-The English and Tamil patient gateway improves accessibility for users who prefer either language.
+<img width="1600" height="894" alt="image" src="https://github.com/user-attachments/assets/acce678e-9c53-4bd3-b591-863d5356b99d" />
 
-The AI Advisor supports general skin-health questions, while the skin health tracker helps users monitor changes over 7–14 days.
-
-Specialist appointment assistance and UV and micro-climate alerts provide additional functionality.
-
-Separate patient and doctor views organize the platform's features for different users.
-
-## Some Insights from the project:
-
-The main focus of DermaAI is the integration of image-based analysis, regional-language accessibility, skin health tracking, and specialist assistance.
-
-Useful screenshots from the actual project can include:
-
-- Skin image scanning and upload interface
-- AI-generated skin-analysis results
-- Possible severity indicators and precautions
-- English and Tamil patient gateway
-- AI Advisor interface
-- Skin health tracking dashboard
-- Specialist appointment assistance
-- UV and micro-climate alerts
-- Patient and doctor views
-
-Add actual screenshots from the DermaAI project in this section.
 
 ## Video Explanation for the project:
 
-Add the actual DermaAI project demonstration video filename or link here.
-
-The demonstration can cover the image upload workflow, analysis results, AI Advisor, patient gateway, skin health tracking, and specialist appointment assistance.
 
 ## Conclusion:
 
